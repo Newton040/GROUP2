@@ -3,37 +3,33 @@
                     <div class="sb-sidenav-menu">
                         <div class="nav">
                             <div class="sb-sidenav-menu-heading"></div>
-                            <a class="nav-link" href="dashboard.php">
+                            <a class="nav-link" href="welcome.php">
                                 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                                 DASHBOARD
                             </a>
 
-                            <a class="nav-link" href=".php">
+                            <a class="nav-link" href=" Payment.php">
                                 <div class="sb-nav-link-icon"><i class=""></i></div>
-                                Manage Payments
+                                Payments
                             </a>
-                            <a class="nav-link" href=" Notifications.php">
+                            
+                            <a class="nav-link" href=" Notification.php">
                                 <div class="sb-nav-link-icon"><i class=""></i></div>
-                                Manage  Notifications 
-                            </a>
-                            <a class="nav-link" href="bwdates-report-ds.php">
-                                <div class="sb-nav-link-icon"><i class=""></i></div>
-                                B/W Dates Report
+                                Notifications 
                             </a>
                  
-                            <a class="nav-link" href="manage-users.php">
+                            <a class="nav-link" href="profile.php">
                                 <div class="sb-nav-link-icon"><i class=""></i></div>
-                                Manage Users
-                            </a>
-                            <a class="nav-link" href="add-users.php">
-                                <div class="sb-nav-link-icon"><i class=""></i></div>
-                                Add Users
+                                Profile
                             </a>
 
- 
+  <a class="nav-link" href="change-password.php">
+                                <div class="sb-nav-link-icon"><i class=""></i></div>
+                               Change Password
+                            </a>
 
                             <a class="nav-link" href="logout.php">
-                                <div class="sb-nav-link-icon"><i class="."></i></div>
+                                <div class="sb-nav-link-icon"><i class=""></i></div>
                                 Signout
                             </a>
                         </div>
