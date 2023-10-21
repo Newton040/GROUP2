@@ -3,23 +3,6 @@ include_once('../includes/config.php');
 if (strlen($_SESSION['adminid']==0)) {
   header('location:logout.php');
   } else{
-//Code for Updation 
-if(isset($_POST['update']))
-{
-    $fname=$_POST['fname'];
-    $lname=$_POST['lname'];
-    $contact=$_POST['contact'];
-$userid=$_GET['uid'];
-    $msg=mysqli_query($con,"update users set fname='$fname',lname='$lname',contactno='$contact' where id='$userid'");
-
-if($msg)
-{
-    echo "<script>alert('Profile updated successfully');</script>";
-       echo "<script type='text/javascript'> document.location = 'manage-users.php'; </script>";
-}
-}
-
-
     
 ?>
 <!DOCTYPE html>
@@ -30,7 +13,7 @@ if($msg)
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Edit Profile | LAWS CAMPUS SCHOOL FEES MANAGEMENT SYSTEM</title>
+        <title>User Profile | LAWS CAMPUS SCHOOL FEES MANAGEMENT SYSTEM</title>
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
@@ -50,39 +33,34 @@ while($result=mysqli_fetch_array($query))
 {?>
                         <h1 class="mt-4"><?php echo $result['fname'];?>'s Profile</h1>
                         <div class="card mb-4">
-                     <form method="post">
+                     
                             <div class="card-body">
+                                <a href="edit-profile.php?uid=<?php echo $result['id'];?>">Edit</a>
                                 <table class="table table-bordered">
                                    <tr>
                                     <th>First Name</th>
-                                       <td><input class="form-control" id="fname" name="fname" type="text" value="<?php echo $result['fname'];?>" required /></td>
+                                       <td><?php echo $result['fname'];?></td>
                                    </tr>
                                    <tr>
                                        <th>Last Name</th>
-                                       <td><input class="form-control" id="lname" name="lname" type="text" value="<?php echo $result['lname'];?>"  required /></td>
-                                   </tr>
-                                         <tr>
-                                       <th>Contact No.</th>
-                                       <td colspan="3"><input class="form-control" id="contact" name="contact" type="text" value="<?php echo $result['contactno'];?>"  pattern="[0-9]{10}" title="10 numeric characters only"  maxlength="10" required /></td>
+                                       <td><?php echo $result['lname'];?></td>
                                    </tr>
                                    <tr>
                                        <th>Email</th>
                                        <td colspan="3"><?php echo $result['email'];?></td>
                                    </tr>
-                               
+                                     <tr>
+                                       <th>Contact No.</th>
+                                       <td colspan="3"><?php echo $result['contactno'];?></td>
+                                   </tr>
                                      
                                         <tr>
                                        <th>Reg. Date</th>
                                        <td colspan="3"><?php echo $result['posting_date'];?></td>
                                    </tr>
-                                   <tr>
-                                       <td colspan="4" style="text-align:center ;"><button type="submit" class="btn btn-primary btn-block" name="update">Update</button></td>
-
-                                   </tr>
                                     </tbody>
                                 </table>
                             </div>
-                            </form>
                         </div>
 <?php } ?>
 

@@ -1,3 +1,30 @@
+<?php session_start(); 
+include_once('../includes/config.php');
+// Code for login 
+if(isset($_POST['login']))
+{
+  $adminusername=$_POST['username'];
+  $pass=md5($_POST['password']);
+$ret=mysqli_query($con,"SELECT * FROM admin WHERE username='$adminusername' and password='$pass'");
+$num=mysqli_fetch_array($ret);
+if($num>0)
+{
+$extra="dashboard.php";
+$_SESSION['login']=$_POST['username'];
+$_SESSION['adminid']=$num['id'];
+echo "<script>window.location.href='".$extra."'</script>";
+exit();
+}
+else
+{
+echo "<script>alert('Invalid username or password');</script>";
+$extra="index.php";
+echo "<script>window.location.href='".$extra."'</script>";
+exit();
+}
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -6,54 +33,57 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>Home |LAWS CAMPUS SCHOOL FEES MANAGEMENT SYSTEM </title>
-        <link href="css/styles.css" rel="stylesheet" />
+        <title>Admin Login | LAWS CAMPUS SCHOOL FEES MANAGEMENT SYSTEM</title>
+        <link href="../css/styles.css" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/all.min.js" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">
-            <!-- Navbar Brand-->
-            <a class="navbar-brand ps-3" href="index.php">LAWS CAMPUS SCHOOL FEES MANAGEMENT SYSTEM</a>
-            <!-- Sidebar Toggle-->
-
-            <!-- Navbar Search-->
-          
-        </nav>
-        <div id="layoutSidenav">
-       
-            <div id="layoutSidenav_content">
+    <body class="bg-primary">
+        <div id="layoutAuthentication">
+            <div id="layoutAuthentication_content">
                 <main>
-                    <div class="container-fluid px-4">
-                        <h1 class="mt-4">  </h1>
-                        <ol class="breadcrumb mb-4">
-                            <li class="breadcrumb-item"><a href="index.php">HOME</a></li>
-              
-                        </ol>
-        <div class="row" >
-                            <div class="col-xl-4 col-md-6" >
-                                <div class="card bg-primary text-white mb-4">
-                                    <div class="card-body">Not Registers Yet</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="signup.php">Signup Here</a>
-                                        <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                    <div class="container">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-5">
+                                <div class="card shadow-lg border-0 rounded-lg mt-5">
+
+<div class="card-header">
+<h2 align="center">LAWS CAMPUS SCHOOL FEES MANAGEMENT SYSTEM</h2>
+<hr />
+    <h3 class="text-center font-weight-light my-4">Admin Login</h3></div>
+                                    <div class="card-body">
+                                        
+                                        <form method="post">
+                                            
+<div class="form-floating mb-3">
+<input class="form-control" name="username" type="text" placeholder="Username"  required/>
+<label for="inputEmail">Username</label>
+</div>
+                                            
+
+<div class="form-floating mb-3">
+<input class="form-control" name="password" type="password" placeholder="Password" required />
+<label for="inputPassword">Password</label>
+</div>
+
+
+<div class="d-flex align-items-center justify-content-between mt-4 mb-0">
+<a class="small" href="password-recovery.php">Forgot Password?</a>
+<button class="btn btn-primary" name="login" type="submit">Login</button>
+</div>
+</form>
+</div>
+                                    <div class="card-footer text-center py-3">
+                                        <div class="small"><a href="../index.php">Back to Home Page</a></div>
                                     </div>
                                 </div>
                             </div>
-<div class="col-xl-4 col-md-6">
-                                <div class="card bg-warning text-white mb-4">
-                                    <div class="card-body">Already Registered</div>
-                                    <div class="card-footer d-flex align-items-center justify-content-between">
-                                        <a class="small text-white stretched-link" href="login.php">Login Here</a>
-                                    </div>
-                                </div>
-                            </div>
-
-
+                        </div>
+                    </div>
                 </main>
-   
             </div>
+
         </div>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
-        <script src="js/scripts.js"></script>
+        <script src="../js/scripts.js"></script>
     </body>
 </html>
